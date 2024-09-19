@@ -4,7 +4,7 @@ from discord.ext import commands
 from tux.bot import Tux
 from tux.database.controllers import DatabaseController
 from tux.ui.embeds import EmbedCreator, EmbedType
-from tux.utils.functions import is_harmful, strip_formatting, breaks_no_hello
+from tux.utils.functions import is_harmful, strip_formatting
 
 
 class EventHandler(commands.Cog):
@@ -24,7 +24,9 @@ class EventHandler(commands.Cog):
         if message.author.bot:
             return
 
-        stripped_content = strip_formatting(message.content) # pretty sure we have message.clean_content to replace strip_formatting, might be wrong though -Dainis
+        stripped_content = strip_formatting(
+            message.content,
+        )  # pretty sure we have message.clean_content to replace strip_formatting, might be wrong though -Dainis
 
         if is_harmful(stripped_content):
             await message.reply(

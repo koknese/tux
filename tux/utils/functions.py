@@ -11,7 +11,7 @@ def is_harmful(command: str) -> bool:
     first_test: bool = re.search(harmful_command_pattern, command, re.IGNORECASE) is not None
     second_test: bool = re.search(r"rm.{0,5}[rfRF]", command, re.IGNORECASE) is not None
     return first_test and second_test
-    
+
 
 def strip_formatting(content: str) -> str:
     # Remove triple backtick blocks considering any spaces and platform-specific newlines
