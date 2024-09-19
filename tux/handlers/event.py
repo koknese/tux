@@ -35,7 +35,7 @@ class EventHandler(commands.Cog):
         if message.author.bot:
             return False
 
-        support_channel_id = 1223690612822376529
+        support_channel_id = 1172312674298761216
         return message.channel.id == support_channel_id and (
             "hello" in message.content.lower() or "hi" in message.content.lower()
         )
