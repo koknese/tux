@@ -4,7 +4,7 @@ from discord.ext import commands
 from tux.bot import Tux
 from tux.database.controllers import DatabaseController
 from tux.ui.embeds import EmbedCreator, EmbedType
-from tux.utils.functions import is_harmful, strip_formatting
+from tux.utils.functions import is_harmful, strip_formatting, breaks_no_hello
 
 
 class EventHandler(commands.Cog):
@@ -24,11 +24,20 @@ class EventHandler(commands.Cog):
         if message.author.bot:
             return
 
-        stripped_content = strip_formatting(message.content)
+        stripped_content = strip_formatting(message.content) # pretty sure we have message.clean_content to replace strip_formatting, might be wrong though -Dainis
 
         if is_harmful(stripped_content):
             await message.reply(
                 "-# ⚠️ **This command is likely harmful. By running it, all directory contents will be deleted. There is no undo. Ensure you fully understand the consequences before proceeding. If you have received this message in error, please disregard it.**",
+            )
+
+    async def no_hello(self, message: discord.Message):
+        if message.author.bot:
+            return
+
+        if breaks_no_hello(message.clean_content)
+            await message.reply(
+                "-# Please make sure to adhere to https://nohello.net/en/ and https://discord.com/channels/1172245377395728464/1283783542911926293!", ephemeral
             )
 
     @commands.Cog.listener()

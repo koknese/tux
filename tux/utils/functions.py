@@ -12,6 +12,9 @@ def is_harmful(command: str) -> bool:
     second_test: bool = re.search(r"rm.{0,5}[rfRF]", command, re.IGNORECASE) is not None
     return first_test and second_test
 
+def breaks_no_hello(command: str) -> bool:
+    if message.channel.id == 1172312674298761216 and "hello" in message.content or "hi" in message.content:
+       return True
 
 def strip_formatting(content: str) -> str:
     # Remove triple backtick blocks considering any spaces and platform-specific newlines
